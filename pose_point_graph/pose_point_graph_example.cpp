@@ -21,14 +21,14 @@ public:
 
     virtual void setToOriginImpl()
     {
-        _estimate = Sophus::SE3();
+        _estimate = Sophus::SE3f();
     }
 
     bool read(std::istream &) {return true;}
     bool write(std::ostream &) const {return true;}
 
     virtual void oplusImpl ( const double* update ) {
-        Sophus::SE3d up (
+        Sophus::SE3f up (
                     Sophus::SO3f ( update[3], update[4], update[5] ),
                 Eigen::Vector3f ( update[0], update[1], update[2] ));
         _estimate = up * _estimate;
